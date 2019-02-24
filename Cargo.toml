@@ -2,6 +2,14 @@
 name = "bootloader-coreboot"
 version = "0.1.0"
 authors = ["Jeremy Soller <jeremy@system76.com>"]
-edition = "2018"
+
+[lib]
+name = "bootloader"
+path = "src/lib.rs"
+crate-type = ["staticlib"]
 
 [dependencies]
+bitflags = "1.0.3"
+coreboot-table = "0.1.2"
+redox_syscall = "0.1.51"
+spin = "0.4.8"
