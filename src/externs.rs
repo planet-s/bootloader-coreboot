@@ -154,22 +154,3 @@ pub unsafe extern fn memcmp(s1: *const u8, s2: *const u8, n: usize) -> i32 {
 
     0
 }
-
-extern "C" {
-    /// Returns `n / d` and sets `*rem = n % d`
-    fn __udivmoddi4(n: u64, d: u64, rem: Option<&mut u64>) -> u64;
-}
-
-/// Returns `n / d`
-#[no_mangle]
-pub unsafe extern "C" fn __udivdi3(n: u64, d: u64) -> u64 {
-    __udivmoddi4(n, d, None)
-}
-
-/// Returns `n % d`
-#[no_mangle]
-pub unsafe extern "C" fn __umoddi3(n: u64, d: u64) -> u64 {
-    let mut rem = 0;
-    __udivmoddi4(n, d, Some(&mut rem));
-    rem
-}
