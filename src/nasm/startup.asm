@@ -43,6 +43,7 @@ long_mode:
     mov gs, rax
     mov ss, rax
 
+%ifdef KERNEL
     ; set kernel size
     mov rax, __kernel_end
     sub rax, __kernel
@@ -61,6 +62,8 @@ long_mode:
     ; entry point
     mov rax, [args.kernel_base]
     call [rax + 0x18]
+%endif
+
 .halt:
     cli
     hlt
@@ -111,6 +114,9 @@ iend
 .end equ $ - gdt
 
 SECTION .kernel
+%ifdef KERNEL
 __kernel:
-INCBIN "build/kernel"
+      %defstr KERNEL_STR %[KERNEL]
+      INCBIN KERNEL_STR
 __kernel_end:
+%endif
