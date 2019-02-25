@@ -2,7 +2,7 @@ ENTRY(kstart)
 OUTPUT_FORMAT(elf32-i386)
 
 SECTIONS {
-    . = 0x100000;
+    . = 0x8000;
 
     . += SIZEOF_HEADERS;
     . = ALIGN(4096);
@@ -45,6 +45,12 @@ SECTIONS {
     }
 
     __end = .;
+
+    . = 0x100000;
+
+    .kernel : {
+        *(.kernel*)
+    }
 
     /DISCARD/ : {
         *(.comment*)

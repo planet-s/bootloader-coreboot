@@ -9,7 +9,7 @@ path = "src/lib.rs"
 crate-type = ["staticlib"]
 
 [dependencies]
-bitflags = "1.0.3"
-coreboot-table = "0.1.2"
+bitflags = "1.0.4"
+coreboot-table = "0.1.4"
 redox_syscall = "0.1.51"
-spin = "0.4.8"
+spin = "0.5.0"
