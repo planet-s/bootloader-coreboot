@@ -21,6 +21,7 @@ endif
 
 build/libbootloader.a: Cargo.lock Cargo.toml src/* src/*/* src/*/*/* src/*/*/*/*
 	mkdir -p build
+	rustup component add rust-src
 	xargo rustc --lib --target $(TARGET) --release -- -C soft-float -C debuginfo=2 --emit link=$@
 
 build/bootloader: linkers/$(ARCH).ld build/libstartup.o build/libbootloader.a
